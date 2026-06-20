@@ -498,7 +498,7 @@ document.getElementById('form-plan').addEventListener('submit', (e) => {
     `**Contacto de quien propone:** ${contacto || '(anónimo)'}`
   ].join('\n');
 
-  const url = `https://github.com/${REPO_GITHUB}/issues/new?title=${encodeURIComponent(issueTitulo)}&body=${encodeURIComponent(issueBody)}&labels=propuesta-plan`;
+  const url = `https://github.com/${REPO_GITHUB}/issues/new?title=${encodeURIComponent(issueTitulo)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent('Recibido')}`;
   window.open(url, '_blank');
 });
 
