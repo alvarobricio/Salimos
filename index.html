@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Salimos · Tarancón y Comarca</title>
+<meta name="description" content="Salimos: qué hacer cerca de ti en Castilla-La Mancha. Cultura, chollos y ocio, sin PDFs ni comisiones.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C1502E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#F7F2E7',
+          ink: '#2A2420',
+          terracota: '#C1502E',
+          terracotaDark: '#9C3D21',
+          noche: '#2B3A55',
+          oliva: '#6B7A3E',
+          olivaLight: '#8C9A57',
+          arena: '#EAE0CC'
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Public Sans', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Public Sans', sans-serif; background:#F7F2E7; color:#2A2420; }
+  h1,h2,h3,.display { font-family: 'Fraunces', serif; }
+  .horizon {
+    height: 18px;
+    background-image: repeating-linear-gradient(90deg, #C1502E 0 2px, transparent 2px 14px);
+    opacity: 0.5;
+  }
+  .windmill {
+    animation: spin 6s linear infinite;
+    transform-origin: 50% 42%;
+  }
+  @keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+  @media (prefers-reduced-motion: reduce) {
+    .windmill { animation: none; }
+  }
+  .focus-ring:focus-visible { outline: 3px solid #2B3A55; outline-offset: 2px; }
+  .chip { transition: all .15s ease; }
+  .chip[aria-pressed="true"] { background:#2A2420; color:#F7F2E7; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ============ HEADER ============ -->
+<header class="px-5 pt-6 pb-4 border-b-2 border-ink/10">
+  <div class="flex items-center gap-3 max-w-2xl mx-auto">
+    <svg class="windmill w-9 h-9 shrink-0" viewBox="0 0 64 64" fill="none">
+      <line x1="32" y1="20" x2="32" y2="56" stroke="#2A2420" stroke-width="2.5"/>
+      <g stroke="#C1502E" stroke-width="3" stroke-linecap="round">
+        <path d="M32 20 L32 4 L42 12 Z" fill="#C1502E"/>
+        <path d="M32 20 L48 20 L40 30 Z" fill="#9C3D21"/>
+        <path d="M32 20 L32 36 L22 28 Z" fill="#9C3D21"/>
+        <path d="M32 20 L16 20 L24 10 Z" fill="#C1502E"/>
+      </g>
+      <circle cx="32" cy="20" r="2.5" fill="#2A2420"/>
+    </svg>
+    <div>
+      <h1 class="text-xl font-semibold leading-none">Salimos</h1>
+      <p class="text-xs text-ink/60 -mt-0.5">Castilla-La Mancha · ocio sin coñazo</p>
+    </div>
+  </div>
+</header>
+<div class="horizon"></div>
+
+<!-- ============ ONBOARDING ============ -->
+<section id="onboarding" class="max-w-2xl mx-auto px-5 py-10">
+  <h2 class="display text-3xl sm:text-4xl font-semibold mb-2">¿Quién va a salir?</h2>
+  <p class="text-ink/70 mb-8 max-w-md">Elige tu perfil para ver solo los planes que te interesan. Puedes cambiarlo cuando quieras.</p>
+
+  <div class="grid gap-3 mb-8" role="radiogroup" aria-label="Selecciona tu perfil">
+    <button data-perfil="adulto" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
+      <span class="block text-lg font-semibold display">Adulto</span>
+      <span class="block text-sm text-ink/60">Planes, chollos y ocio nocturno de la comarca</span>
+    </button>
+    <button data-perfil="tercera_edad" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
+      <span class="block text-lg font-semibold display">Tercera edad</span>
+      <span class="block text-sm text-ink/60">Actividades tranquilas y acompañamiento solidario</span>
+    </button>
+    <button data-perfil="todos" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
+      <span class="block text-lg font-semibold display">Ver todo</span>
+      <span class="block text-sm text-ink/60">Sin filtrar por edad</span>
+    </button>
+  </div>
+
+  <button id="continuar" disabled
+    class="focus-ring w-full sm:w-auto px-8 py-3.5 rounded-full bg-ink text-cream font-semibold disabled:opacity-30 disabled:cursor-not-allowed transition">
+    Ver mi agenda →
+  </button>
+</section>
+
+<!-- ============ AGENDA ============ -->
+<section id="agenda" class="hidden max-w-2xl mx-auto px-5 py-8 pb-24">
+
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="display text-2xl font-semibold">Salimos</h2>
+    <button id="cambiar-perfil" class="focus-ring text-sm underline text-ink/60 hover:text-ink">cambiar perfil</button>
+  </div>
+
+  <!-- filtros de categoría -->
+  <div id="filtros" class="flex flex-wrap gap-2 mb-6"></div>
+
+  <div id="lista" class="space-y-4"></div>
+
+  <p id="vacio" class="hidden text-ink/60 text-center py-12">
+    No hay planes para este filtro todavía.<br>
+    <span class="text-sm">Prueba a quitar el filtro o vuelve más tarde.</span>
+  </p>
+</section>
+
+<footer class="text-center text-xs text-ink/40 py-6 px-5">
+  Descubrimiento directo · 0€ de comisión · las entradas se compran siempre en la web oficial
+</footer>
+
+<script>
+const CATEGORIAS = {
+  cultura: { label: 'Cultura', color: 'bg-noche text-cream' },
+  chollo: { label: 'Chollo', color: 'bg-oliva text-cream' },
+  comercio_local: { label: 'Comercio local', color: 'bg-olivaLight text-ink' },
+  deporte: { label: 'Deporte', color: 'bg-terracota text-cream' },
+  intergeneracional: { label: 'Intergeneracional', color: 'bg-ink text-cream' }
+};
+
+let agendaData = [];
+let perfilActual = null;
+let categoriaActiva = null;
+
+async function cargarAgenda() {
+  try {
+    const res = await fetch('agenda.json');
+    const data = await res.json();
+    agendaData = data.eventos || [];
+  } catch (e) {
+    console.error('No se pudo cargar agenda.json', e);
+    agendaData = [];
+  }
+}
+
+function elegirPerfil(perfil, btn) {
+  perfilActual = perfil;
+  document.querySelectorAll('.perfil-btn').forEach(b => {
+    b.setAttribute('aria-checked', 'false');
+    b.classList.remove('border-terracota', 'bg-arena');
+  });
+  btn.setAttribute('aria-checked', 'true');
+  btn.classList.add('border-terracota', 'bg-arena');
+  document.getElementById('continuar').disabled = false;
+}
+
+function renderFiltros() {
+  const cont = document.getElementById('filtros');
+  cont.innerHTML = '';
+  const todas = document.createElement('button');
+  todas.textContent = 'Todo';
+  todas.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
+  todas.setAttribute('aria-pressed', categoriaActiva === null);
+  todas.onclick = () => { categoriaActiva = null; renderFiltros(); renderLista(); };
+  cont.appendChild(todas);
+
+  Object.entries(CATEGORIAS).forEach(([key, val]) => {
+    const b = document.createElement('button');
+    b.textContent = val.label;
+    b.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
+    b.setAttribute('aria-pressed', categoriaActiva === key);
+    b.onclick = () => { categoriaActiva = key; renderFiltros(); renderLista(); };
+    cont.appendChild(b);
+  });
+}
+
+function formatearFecha(f) {
+  if (!f || f.startsWith('EJEMPLO')) return f.replace('EJEMPLO-', '').replace(/-/g,' ');
+  const d = new Date(f + 'T00:00:00');
+  if (isNaN(d)) return f;
+  return d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+function renderLista() {
+  const lista = document.getElementById('lista');
+  const vacio = document.getElementById('vacio');
+  lista.innerHTML = '';
+
+  let items = agendaData.filter(ev => {
+    const pasaPerfil = perfilActual === 'todos' || !ev.perfil || ev.perfil.includes(perfilActual);
+    const pasaCategoria = categoriaActiva === null || ev.categoria === categoriaActiva;
+    return pasaPerfil && pasaCategoria;
+  });
+
+  if (items.length === 0) {
+    vacio.classList.remove('hidden');
+    return;
+  }
+  vacio.classList.add('hidden');
+
+  items.forEach(ev => {
+    const cat = CATEGORIAS[ev.categoria] || { label: ev.categoria, color: 'bg-ink text-cream' };
+    const card = document.createElement('article');
+    card.className = 'bg-white border-2 border-ink/10 rounded-2xl p-5';
+    card.innerHTML = `
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <span class="${cat.color} text-xs font-semibold px-3 py-1 rounded-full shrink-0">${cat.label}</span>
+        <span class="text-xs text-ink/50 text-right">${formatearFecha(ev.fecha)}</span>
+      </div>
+      <h3 class="display text-lg font-semibold leading-snug mb-1">${ev.titulo}</h3>
+      <p class="text-sm text-ink/70 mb-2">${ev.descripcion || ''}</p>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink/60">
+        <span>📍 ${ev.lugar}, ${ev.municipio}</span>
+        <span>🕒 ${ev.hora_inicio || ''}${ev.hora_fin ? ' - ' + ev.hora_fin : ''}</span>
+        <span>💶 ${ev.precio || 'Consultar'}</span>
+        ${ev.requiere_coche ? '<span>🚗 Necesitas coche o bus</span>' : '<span>🚶 A pie / cerca</span>'}
+      </div>
+    `;
+    lista.appendChild(card);
+  });
+}
+
+document.querySelectorAll('.perfil-btn').forEach(btn => {
+  btn.addEventListener('click', () => elegirPerfil(btn.dataset.perfil, btn));
+});
+
+document.getElementById('continuar').addEventListener('click', async () => {
+  if (!perfilActual) return;
+  await cargarAgenda();
+  document.getElementById('onboarding').classList.add('hidden');
+  document.getElementById('agenda').classList.remove('hidden');
+  renderFiltros();
+  renderLista();
+});
+
+document.getElementById('cambiar-perfil').addEventListener('click', () => {
+  document.getElementById('agenda').classList.add('hidden');
+  document.getElementById('onboarding').classList.remove('hidden');
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
