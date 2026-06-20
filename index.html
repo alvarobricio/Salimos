@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Salimos · Tarancón y Comarca</title>
+<title>Salimos · Castilla-La Mancha</title>
 <meta name="description" content="Salimos: qué hacer cerca de ti en Castilla-La Mancha. Cultura, chollos y ocio, sin PDFs ni comisiones.">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#C1502E">
@@ -51,6 +51,10 @@
   .focus-ring:focus-visible { outline: 3px solid #2B3A55; outline-offset: 2px; }
   .chip { transition: all .15s ease; }
   .chip[aria-pressed="true"] { background:#2A2420; color:#F7F2E7; }
+  .section-label {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+  }
 </style>
 </head>
 <body class="min-h-screen">
@@ -82,12 +86,20 @@
   <p class="text-ink/70 mb-8 max-w-md">Elige tu perfil para ver solo los planes que te interesan. Puedes cambiarlo cuando quieras.</p>
 
   <div class="grid gap-3 mb-8" role="radiogroup" aria-label="Selecciona tu perfil">
+    <button data-perfil="nino" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
+      <span class="block text-lg font-semibold display">Niño (0-12 años)</span>
+      <span class="block text-sm text-ink/60">Planes en familia, talleres y actividades infantiles</span>
+    </button>
+    <button data-perfil="adolescente" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
+      <span class="block text-lg font-semibold display">Adolescente (13-17 años)</span>
+      <span class="block text-sm text-ink/60">Ocio joven, deporte y cultura sin planes nocturnos</span>
+    </button>
     <button data-perfil="adulto" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
-      <span class="block text-lg font-semibold display">Adulto</span>
+      <span class="block text-lg font-semibold display">Adulto (18-64 años)</span>
       <span class="block text-sm text-ink/60">Planes, chollos y ocio nocturno de la comarca</span>
     </button>
     <button data-perfil="tercera_edad" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
-      <span class="block text-lg font-semibold display">Tercera edad</span>
+      <span class="block text-lg font-semibold display">Tercera edad (65+ años)</span>
       <span class="block text-sm text-ink/60">Actividades tranquilas y acompañamiento solidario</span>
     </button>
     <button data-perfil="todos" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
@@ -110,15 +122,137 @@
     <button id="cambiar-perfil" class="focus-ring text-sm underline text-ink/60 hover:text-ink">cambiar perfil</button>
   </div>
 
-  <!-- filtros de categoría -->
-  <div id="filtros" class="flex flex-wrap gap-2 mb-6"></div>
+  <!-- buscador por localidad / texto -->
+  <div class="relative mb-4">
+    <input id="buscador" type="text" inputmode="search"
+      placeholder="Busca por pueblo, lugar o plan (ej. Tarancón, piscina...)"
+      class="focus-ring w-full border-2 border-ink/15 rounded-full py-3 pl-11 pr-4 bg-white text-sm placeholder:text-ink/40">
+    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-ink/40">🔍</span>
+  </div>
 
-  <div id="lista" class="space-y-4"></div>
+  <!-- selector de provincia -->
+  <div class="mb-3">
+    <p class="text-xs font-semibold uppercase tracking-wide text-ink/50 mb-2">Provincia</p>
+    <div id="filtros-provincia" class="flex flex-wrap gap-2"></div>
+  </div>
+
+  <!-- filtros de categoría -->
+  <div class="mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-ink/50 mb-2">Categoría</p>
+    <div id="filtros-categoria" class="flex flex-wrap gap-2"></div>
+  </div>
+
+  <div id="contenedor-lista"></div>
 
   <p id="vacio" class="hidden text-ink/60 text-center py-12">
-    No hay planes para este filtro todavía.<br>
-    <span class="text-sm">Prueba a quitar el filtro o vuelve más tarde.</span>
+    No hay planes para esta búsqueda todavía.<br>
+    <span class="text-sm">Prueba a quitar algún filtro, o propón tú el plan que falta.</span>
   </p>
+
+  <!-- CTA proponer plan -->
+  <div class="mt-10 border-t-2 border-ink/10 pt-6 text-center">
+    <p class="text-sm text-ink/60 mb-3">¿Echas en falta un plan, chollo o sitio de tu pueblo?</p>
+    <button id="abrir-formulario" class="focus-ring px-6 py-3 rounded-full border-2 border-ink font-semibold hover:bg-ink hover:text-cream transition">
+      + Proponer un plan
+    </button>
+  </div>
+</section>
+
+<!-- ============ FORMULARIO PROPONER PLAN ============ -->
+<section id="formulario" class="hidden max-w-2xl mx-auto px-5 py-8 pb-24">
+  <button id="cerrar-formulario" class="focus-ring text-sm underline text-ink/60 hover:text-ink mb-4">← volver a la agenda</button>
+  <h2 class="display text-2xl font-semibold mb-2">Proponer un plan</h2>
+  <p class="text-ink/70 text-sm mb-6">Rellena lo que sepas. Al enviar se abrirá GitHub para crear el aviso — necesitas (o necesitarás crear) una cuenta gratuita de GitHub.</p>
+
+  <form id="form-plan" class="space-y-4">
+    <div>
+      <label class="block text-sm font-semibold mb-1" for="f-titulo">Título del plan</label>
+      <input required id="f-titulo" type="text" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white" placeholder="Ej. Concierto en la plaza">
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="f-provincia">Provincia</label>
+        <select id="f-provincia" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white">
+          <option>Albacete</option>
+          <option>Ciudad Real</option>
+          <option selected>Cuenca</option>
+          <option>Guadalajara</option>
+          <option>Toledo</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="f-municipio">Pueblo / ciudad</label>
+        <input required id="f-municipio" type="text" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white" placeholder="Tarancón">
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1" for="f-lugar">Lugar exacto</label>
+      <input id="f-lugar" type="text" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white" placeholder="Plaza Mayor, bar X...">
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="f-categoria">Categoría</label>
+        <select id="f-categoria" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white">
+          <option value="cultura">Cultura</option>
+          <option value="chollo">Chollo</option>
+          <option value="comercio_local">Comercio local</option>
+          <option value="deporte">Deporte</option>
+          <option value="intergeneracional">Intergeneracional</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="f-fecha">Fecha</label>
+        <input id="f-fecha" type="date" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="f-hora-inicio">Hora inicio</label>
+        <input id="f-hora-inicio" type="time" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="f-precio">Precio</label>
+        <input id="f-precio" type="text" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white" placeholder="Gratis / 5€...">
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1" for="f-descripcion">Descripción breve</label>
+      <textarea id="f-descripcion" rows="3" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white" placeholder="Cuéntanos en qué consiste..."></textarea>
+    </div>
+
+    <div>
+      <p class="block text-sm font-semibold mb-2">¿Para quién es?</p>
+      <div class="flex flex-wrap gap-2">
+        <label class="flex items-center gap-2 border-2 border-ink/15 rounded-full px-3 py-1.5 text-sm bg-white">
+          <input type="checkbox" name="f-perfil" value="nino"> Niño
+        </label>
+        <label class="flex items-center gap-2 border-2 border-ink/15 rounded-full px-3 py-1.5 text-sm bg-white">
+          <input type="checkbox" name="f-perfil" value="adolescente"> Adolescente
+        </label>
+        <label class="flex items-center gap-2 border-2 border-ink/15 rounded-full px-3 py-1.5 text-sm bg-white">
+          <input type="checkbox" name="f-perfil" value="adulto" checked> Adulto
+        </label>
+        <label class="flex items-center gap-2 border-2 border-ink/15 rounded-full px-3 py-1.5 text-sm bg-white">
+          <input type="checkbox" name="f-perfil" value="tercera_edad"> Tercera edad
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1" for="f-contacto">Tu nombre o contacto (opcional)</label>
+      <input id="f-contacto" type="text" class="focus-ring w-full border-2 border-ink/15 rounded-xl px-4 py-2.5 bg-white" placeholder="Para poder preguntarte algo si hace falta">
+    </div>
+
+    <button type="submit" class="focus-ring w-full px-8 py-3.5 rounded-full bg-ink text-cream font-semibold hover:bg-terracotaDark transition">
+      Enviar propuesta →
+    </button>
+    <p class="text-xs text-ink/50 text-center">Se abrirá una pestaña nueva en GitHub con todo rellenado. Solo tienes que darle a "Submit new issue".</p>
+  </form>
 </section>
 
 <footer class="text-center text-xs text-ink/40 py-6 px-5">
@@ -126,6 +260,10 @@
 </footer>
 
 <script>
+const REPO_GITHUB = 'alvarobricio/salimos';
+
+const PROVINCIAS = ['Albacete', 'Ciudad Real', 'Cuenca', 'Guadalajara', 'Toledo'];
+
 const CATEGORIAS = {
   cultura: { label: 'Cultura', color: 'bg-noche text-cream' },
   chollo: { label: 'Chollo', color: 'bg-oliva text-cream' },
@@ -137,6 +275,13 @@ const CATEGORIAS = {
 let agendaData = [];
 let perfilActual = null;
 let categoriaActiva = null;
+let provinciaActiva = null;
+let textoBusqueda = '';
+
+function normalizar(str) {
+  return (str || '').toString().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
 async function cargarAgenda() {
   try {
@@ -160,14 +305,34 @@ function elegirPerfil(perfil, btn) {
   document.getElementById('continuar').disabled = false;
 }
 
-function renderFiltros() {
-  const cont = document.getElementById('filtros');
+function renderFiltrosProvincia() {
+  const cont = document.getElementById('filtros-provincia');
+  cont.innerHTML = '';
+  const todas = document.createElement('button');
+  todas.textContent = 'Toda CLM';
+  todas.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
+  todas.setAttribute('aria-pressed', provinciaActiva === null);
+  todas.onclick = () => { provinciaActiva = null; renderFiltrosProvincia(); renderLista(); };
+  cont.appendChild(todas);
+
+  PROVINCIAS.forEach(prov => {
+    const b = document.createElement('button');
+    b.textContent = prov;
+    b.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
+    b.setAttribute('aria-pressed', provinciaActiva === prov);
+    b.onclick = () => { provinciaActiva = prov; renderFiltrosProvincia(); renderLista(); };
+    cont.appendChild(b);
+  });
+}
+
+function renderFiltrosCategoria() {
+  const cont = document.getElementById('filtros-categoria');
   cont.innerHTML = '';
   const todas = document.createElement('button');
   todas.textContent = 'Todo';
   todas.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
   todas.setAttribute('aria-pressed', categoriaActiva === null);
-  todas.onclick = () => { categoriaActiva = null; renderFiltros(); renderLista(); };
+  todas.onclick = () => { categoriaActiva = null; renderFiltrosCategoria(); renderLista(); };
   cont.appendChild(todas);
 
   Object.entries(CATEGORIAS).forEach(([key, val]) => {
@@ -175,7 +340,7 @@ function renderFiltros() {
     b.textContent = val.label;
     b.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
     b.setAttribute('aria-pressed', categoriaActiva === key);
-    b.onclick = () => { categoriaActiva = key; renderFiltros(); renderLista(); };
+    b.onclick = () => { categoriaActiva = key; renderFiltrosCategoria(); renderLista(); };
     cont.appendChild(b);
   });
 }
@@ -187,15 +352,56 @@ function formatearFecha(f) {
   return d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
 }
 
+function grupoTemporal(f) {
+  if (!f || f.startsWith('EJEMPLO')) return 'Próximamente / recurrente';
+  const d = new Date(f + 'T00:00:00');
+  if (isNaN(d)) return 'Próximamente / recurrente';
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const diff = Math.round((d - hoy) / 86400000);
+  if (diff < 0) return 'Pasado';
+  if (diff === 0) return 'Hoy';
+  if (diff === 1) return 'Mañana';
+  if (diff <= 7) return 'Esta semana';
+  return 'Más adelante';
+}
+
+const ORDEN_GRUPOS = ['Hoy', 'Mañana', 'Esta semana', 'Más adelante', 'Próximamente / recurrente', 'Pasado'];
+
+function tarjetaEvento(ev) {
+  const cat = CATEGORIAS[ev.categoria] || { label: ev.categoria, color: 'bg-ink text-cream' };
+  const card = document.createElement('article');
+  card.className = 'bg-white border-2 border-ink/10 rounded-2xl p-5';
+  card.innerHTML = `
+    <div class="flex items-start justify-between gap-3 mb-2">
+      <span class="${cat.color} text-xs font-semibold px-3 py-1 rounded-full shrink-0">${cat.label}</span>
+      <span class="text-xs text-ink/50 text-right">${formatearFecha(ev.fecha)}</span>
+    </div>
+    <h3 class="display text-lg font-semibold leading-snug mb-1">${ev.titulo}</h3>
+    <p class="text-sm text-ink/70 mb-2">${ev.descripcion || ''}</p>
+    <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink/60">
+      <span>📍 ${ev.lugar}, ${ev.municipio} (${ev.provincia || ''})</span>
+      <span>🕒 ${ev.hora_inicio || ''}${ev.hora_fin ? ' - ' + ev.hora_fin : ''}</span>
+      <span>💶 ${ev.precio || 'Consultar'}</span>
+      ${ev.requiere_coche ? '<span>🚗 Necesitas coche o bus</span>' : '<span>🚶 A pie / cerca</span>'}
+    </div>
+  `;
+  return card;
+}
+
 function renderLista() {
-  const lista = document.getElementById('lista');
+  const cont = document.getElementById('contenedor-lista');
   const vacio = document.getElementById('vacio');
-  lista.innerHTML = '';
+  cont.innerHTML = '';
+
+  const q = normalizar(textoBusqueda);
 
   let items = agendaData.filter(ev => {
     const pasaPerfil = perfilActual === 'todos' || !ev.perfil || ev.perfil.includes(perfilActual);
     const pasaCategoria = categoriaActiva === null || ev.categoria === categoriaActiva;
-    return pasaPerfil && pasaCategoria;
+    const pasaProvincia = provinciaActiva === null || ev.provincia === provinciaActiva;
+    const pasaTexto = !q || [ev.titulo, ev.lugar, ev.municipio, ev.provincia, ev.descripcion]
+      .some(campo => normalizar(campo).includes(q));
+    return pasaPerfil && pasaCategoria && pasaProvincia && pasaTexto;
   });
 
   if (items.length === 0) {
@@ -204,25 +410,27 @@ function renderLista() {
   }
   vacio.classList.add('hidden');
 
+  // agrupar por cercanía temporal
+  const grupos = {};
   items.forEach(ev => {
-    const cat = CATEGORIAS[ev.categoria] || { label: ev.categoria, color: 'bg-ink text-cream' };
-    const card = document.createElement('article');
-    card.className = 'bg-white border-2 border-ink/10 rounded-2xl p-5';
-    card.innerHTML = `
-      <div class="flex items-start justify-between gap-3 mb-2">
-        <span class="${cat.color} text-xs font-semibold px-3 py-1 rounded-full shrink-0">${cat.label}</span>
-        <span class="text-xs text-ink/50 text-right">${formatearFecha(ev.fecha)}</span>
-      </div>
-      <h3 class="display text-lg font-semibold leading-snug mb-1">${ev.titulo}</h3>
-      <p class="text-sm text-ink/70 mb-2">${ev.descripcion || ''}</p>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink/60">
-        <span>📍 ${ev.lugar}, ${ev.municipio}</span>
-        <span>🕒 ${ev.hora_inicio || ''}${ev.hora_fin ? ' - ' + ev.hora_fin : ''}</span>
-        <span>💶 ${ev.precio || 'Consultar'}</span>
-        ${ev.requiere_coche ? '<span>🚗 Necesitas coche o bus</span>' : '<span>🚶 A pie / cerca</span>'}
-      </div>
-    `;
-    lista.appendChild(card);
+    const g = grupoTemporal(ev.fecha);
+    if (!grupos[g]) grupos[g] = [];
+    grupos[g].push(ev);
+  });
+
+  ORDEN_GRUPOS.forEach(nombreGrupo => {
+    if (!grupos[nombreGrupo]) return;
+    const bloque = document.createElement('div');
+    bloque.className = 'mb-7';
+    const titulo = document.createElement('h3');
+    titulo.className = 'section-label text-base mb-3 text-terracotaDark';
+    titulo.textContent = nombreGrupo;
+    bloque.appendChild(titulo);
+    const lista = document.createElement('div');
+    lista.className = 'space-y-4';
+    grupos[nombreGrupo].forEach(ev => lista.appendChild(tarjetaEvento(ev)));
+    bloque.appendChild(lista);
+    cont.appendChild(bloque);
   });
 }
 
@@ -235,13 +443,63 @@ document.getElementById('continuar').addEventListener('click', async () => {
   await cargarAgenda();
   document.getElementById('onboarding').classList.add('hidden');
   document.getElementById('agenda').classList.remove('hidden');
-  renderFiltros();
+  renderFiltrosProvincia();
+  renderFiltrosCategoria();
   renderLista();
 });
 
 document.getElementById('cambiar-perfil').addEventListener('click', () => {
   document.getElementById('agenda').classList.add('hidden');
   document.getElementById('onboarding').classList.remove('hidden');
+});
+
+document.getElementById('buscador').addEventListener('input', (e) => {
+  textoBusqueda = e.target.value;
+  renderLista();
+});
+
+// ===== formulario proponer plan =====
+document.getElementById('abrir-formulario').addEventListener('click', () => {
+  document.getElementById('agenda').classList.add('hidden');
+  document.getElementById('formulario').classList.remove('hidden');
+  window.scrollTo(0,0);
+});
+document.getElementById('cerrar-formulario').addEventListener('click', () => {
+  document.getElementById('formulario').classList.add('hidden');
+  document.getElementById('agenda').classList.remove('hidden');
+});
+
+document.getElementById('form-plan').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const titulo = document.getElementById('f-titulo').value.trim();
+  const provincia = document.getElementById('f-provincia').value;
+  const municipio = document.getElementById('f-municipio').value.trim();
+  const lugar = document.getElementById('f-lugar').value.trim();
+  const categoria = document.getElementById('f-categoria').value;
+  const fecha = document.getElementById('f-fecha').value;
+  const horaInicio = document.getElementById('f-hora-inicio').value;
+  const precio = document.getElementById('f-precio').value.trim();
+  const descripcion = document.getElementById('f-descripcion').value.trim();
+  const contacto = document.getElementById('f-contacto').value.trim();
+  const perfiles = Array.from(document.querySelectorAll('input[name="f-perfil"]:checked')).map(c => c.value);
+
+  const issueTitulo = `[Propuesta de plan] ${titulo} - ${municipio}`;
+  const issueBody = [
+    `**Título:** ${titulo}`,
+    `**Provincia:** ${provincia}`,
+    `**Municipio:** ${municipio}`,
+    `**Lugar:** ${lugar || '(no indicado)'}`,
+    `**Categoría:** ${categoria}`,
+    `**Fecha:** ${fecha || '(no indicada)'}`,
+    `**Hora inicio:** ${horaInicio || '(no indicada)'}`,
+    `**Precio:** ${precio || '(no indicado)'}`,
+    `**Para quién:** ${perfiles.join(', ') || '(no indicado)'}`,
+    `**Descripción:** ${descripcion || '(sin descripción)'}`,
+    `**Contacto de quien propone:** ${contacto || '(anónimo)'}`
+  ].join('\n');
+
+  const url = `https://github.com/${REPO_GITHUB}/issues/new?title=${encodeURIComponent(issueTitulo)}&body=${encodeURIComponent(issueBody)}&labels=propuesta-plan`;
+  window.open(url, '_blank');
 });
 
 if ('serviceWorker' in navigator) {
