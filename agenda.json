@@ -1,198 +1,439 @@
-{
-  "_nota_para_ti": "Las fechas marcadas con 'EJEMPLO' son ficticias para probar la app. Sustitúyelas por fechas reales antes de publicar. Los lugares y comercios sí son reales (verifica horarios/precios). Los eventos de Albacete, Ciudad Real, Guadalajara y Toledo son ejemplos de relleno para probar el filtro por provincia: sustitúyelos por planes reales cuando amplíes esas zonas.",
-  "ultima_actualizacion": "2026-06-20",
-  "eventos": [
-    {
-      "id": "evt-001",
-      "titulo": "Festival de fin de curso - Estudio Rosario Tosta",
-      "categoria": "cultura",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Cuenca",
-      "municipio": "Cuenca",
-      "lugar": "Auditorio de Cuenca",
-      "fecha": "2026-06-20",
-      "hora_inicio": "19:00",
-      "hora_fin": "21:30",
-      "precio": "Entrada gratuita",
-      "descripcion": "Festival anual de danza de fin de curso.",
-      "enlace_oficial": "",
-      "requiere_coche": true
-    },
-    {
-      "id": "evt-002",
-      "titulo": "Mercadillo semanal de Tarancón",
-      "categoria": "comercio_local",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Cuenca",
-      "municipio": "Tarancón",
-      "lugar": "Recinto ferial / centro",
-      "fecha": "EJEMPLO-cada-miércoles",
-      "hora_inicio": "09:00",
-      "hora_fin": "14:00",
-      "precio": "Gratis",
-      "descripcion": "Mercadillo tradicional semanal.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-003",
-      "titulo": "Chollo: menú/tapeo económico",
-      "categoria": "chollo",
-      "perfil": ["adulto"],
-      "provincia": "Cuenca",
-      "municipio": "Tarancón",
-      "lugar": "Borrachos (Tarancón)",
-      "fecha": "EJEMPLO-permanente",
-      "hora_inicio": "20:00",
-      "hora_fin": "23:30",
-      "precio": "Consultar oferta vigente",
-      "descripcion": "Chollo de tapeo nocturno local. Actualizar precio real antes de publicar.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-004",
-      "titulo": "Chollo: Miguelitos a 1€",
-      "categoria": "chollo",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Albacete",
-      "municipio": "La Roda",
-      "lugar": "Pastelería en La Roda",
-      "fecha": "EJEMPLO-permanente",
-      "hora_inicio": "09:00",
-      "hora_fin": "20:00",
-      "precio": "1€",
-      "descripcion": "Clásico dulce manchego a precio popular.",
-      "enlace_oficial": "",
-      "requiere_coche": true
-    },
-    {
-      "id": "evt-005",
-      "titulo": "Préstamo y actividades - Biblioteca Municipal Luis Rius",
-      "categoria": "cultura",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Cuenca",
-      "municipio": "Tarancón",
-      "lugar": "Biblioteca Municipal Luis Rius",
-      "fecha": "EJEMPLO-recurrente",
-      "hora_inicio": "17:00",
-      "hora_fin": "20:00",
-      "precio": "Gratis",
-      "descripcion": "Actividades de fomento de la lectura para todos los públicos.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-006",
-      "titulo": "Taller en la Casa de Piedra",
-      "categoria": "cultura",
-      "perfil": ["adulto"],
-      "provincia": "Cuenca",
-      "municipio": "Tarancón",
-      "lugar": "Casa de Piedra",
-      "fecha": "EJEMPLO-2026-07-04",
-      "hora_inicio": "18:00",
-      "hora_fin": "20:00",
-      "precio": "Gratis / consultar",
-      "descripcion": "Espacio municipal para talleres y actividades formativas.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-007",
-      "titulo": "Sesión de natación / actividad piscina municipal",
-      "categoria": "deporte",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Cuenca",
-      "municipio": "Tarancón",
-      "lugar": "Piscina Municipal Cubierta",
-      "fecha": "EJEMPLO-recurrente",
-      "hora_inicio": "09:00",
-      "hora_fin": "11:00",
-      "precio": "Consultar bono",
-      "descripcion": "Sesiones organizadas, activas entre febrero y junio según temporada.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-008",
-      "titulo": "Acompañamiento solidario a cita médica/teatro en Cuenca",
-      "categoria": "intergeneracional",
-      "perfil": ["tercera_edad"],
-      "provincia": "Cuenca",
-      "municipio": "Cuenca",
-      "lugar": "Coordinación vía Cruz Roja Tarancón",
-      "fecha": "EJEMPLO-bajo-demanda",
-      "hora_inicio": "10:00",
-      "hora_fin": "13:00",
-      "precio": "Gratis",
-      "descripcion": "Conductores voluntarios acompañan a personas mayores a citas en Cuenca.",
-      "enlace_oficial": "",
-      "requiere_coche": true
-    },
-    {
-      "id": "evt-009",
-      "titulo": "EJEMPLO: Ruta cultural por el casco histórico",
-      "categoria": "cultura",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Albacete",
-      "municipio": "Albacete",
-      "lugar": "Casco histórico (por confirmar)",
-      "fecha": "EJEMPLO-rellenar",
-      "hora_inicio": "11:00",
-      "hora_fin": "13:00",
-      "precio": "Por confirmar",
-      "descripcion": "Plan de ejemplo — sustituir por actividad real de Albacete capital o comarca.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-010",
-      "titulo": "EJEMPLO: Chollo gastronómico local",
-      "categoria": "chollo",
-      "perfil": ["adulto"],
-      "provincia": "Ciudad Real",
-      "municipio": "Ciudad Real",
-      "lugar": "Por confirmar",
-      "fecha": "EJEMPLO-rellenar",
-      "hora_inicio": "20:00",
-      "hora_fin": "23:00",
-      "precio": "Por confirmar",
-      "descripcion": "Plan de ejemplo — sustituir por un chollo real de Ciudad Real capital o comarca.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-011",
-      "titulo": "EJEMPLO: Actividad cultural municipal",
-      "categoria": "cultura",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Guadalajara",
-      "municipio": "Guadalajara",
-      "lugar": "Por confirmar",
-      "fecha": "EJEMPLO-rellenar",
-      "hora_inicio": "18:00",
-      "hora_fin": "20:00",
-      "precio": "Por confirmar",
-      "descripcion": "Plan de ejemplo — sustituir por actividad real de Guadalajara capital o comarca.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    },
-    {
-      "id": "evt-012",
-      "titulo": "EJEMPLO: Mercadillo o feria local",
-      "categoria": "comercio_local",
-      "perfil": ["adulto", "tercera_edad"],
-      "provincia": "Toledo",
-      "municipio": "Toledo",
-      "lugar": "Por confirmar",
-      "fecha": "EJEMPLO-rellenar",
-      "hora_inicio": "09:00",
-      "hora_fin": "14:00",
-      "precio": "Gratis",
-      "descripcion": "Plan de ejemplo — sustituir por mercadillo o feria real de Toledo capital o comarca.",
-      "enlace_oficial": "",
-      "requiere_coche": false
-    }
-  ]
+import json
+
+existentes = [
+ {
+  "id": "evt-001",
+  "titulo": "Festival de fin de curso - Estudio Rosario Tosta",
+  "categoria": "cultura",
+  "perfil": ["adulto", "tercera_edad"],
+  "provincia": "Cuenca", "municipio": "Cuenca",
+  "lugar": "Auditorio de Cuenca",
+  "fecha": "2026-06-20", "hora_inicio": "19:00", "hora_fin": "21:30",
+  "precio": "Entrada gratuita",
+  "descripcion": "Festival anual de danza de fin de curso.",
+  "enlace_oficial": "", "requiere_coche": True
+ },
+ {
+  "id": "evt-002",
+  "titulo": "Mercadillo semanal de Tarancón",
+  "categoria": "comercio_local",
+  "perfil": ["adulto", "tercera_edad"],
+  "provincia": "Cuenca", "municipio": "Tarancón",
+  "lugar": "Recinto ferial / centro",
+  "fecha": "EJEMPLO-cada-miércoles", "hora_inicio": "09:00", "hora_fin": "14:00",
+  "precio": "Gratis",
+  "descripcion": "Mercadillo tradicional semanal.",
+  "enlace_oficial": "", "requiere_coche": False
+ },
+ {
+  "id": "evt-003",
+  "titulo": "Chollo: menú/tapeo económico",
+  "categoria": "chollo",
+  "perfil": ["adulto"],
+  "provincia": "Cuenca", "municipio": "Tarancón",
+  "lugar": "Borrachos (Tarancón)",
+  "fecha": "EJEMPLO-permanente", "hora_inicio": "20:00", "hora_fin": "23:30",
+  "precio": "Consultar oferta vigente",
+  "descripcion": "Chollo de tapeo nocturno local. Actualizar precio real antes de publicar.",
+  "enlace_oficial": "", "requiere_coche": False
+ },
+ {
+  "id": "evt-004",
+  "titulo": "Chollo: Miguelitos a 1€",
+  "categoria": "chollo",
+  "perfil": ["adulto", "tercera_edad"],
+  "provincia": "Albacete", "municipio": "La Roda",
+  "lugar": "Pastelería en La Roda",
+  "fecha": "EJEMPLO-permanente", "hora_inicio": "09:00", "hora_fin": "20:00",
+  "precio": "1€ unidad",
+  "descripcion": "Clásico dulce manchego a precio popular.",
+  "enlace_oficial": "", "requiere_coche": False
+ },
+ {
+  "id": "evt-005",
+  "titulo": "Préstamo y actividades - Biblioteca Municipal Luis Rius",
+  "categoria": "cultura",
+  "perfil": ["adulto", "tercera_edad", "adolescente", "nino"],
+  "provincia": "Cuenca", "municipio": "Tarancón",
+  "lugar": "Biblioteca Municipal Luis Rius",
+  "fecha": "EJEMPLO-recurrente", "hora_inicio": "10:00", "hora_fin": "20:00",
+  "precio": "Gratis",
+  "descripcion": "Actividades de fomento de la lectura para todos los públicos.",
+  "enlace_oficial": "", "requiere_coche": False
+ },
+ {
+  "id": "evt-006",
+  "titulo": "Taller en la Casa de Piedra",
+  "categoria": "cultura",
+  "perfil": ["adulto"],
+  "provincia": "Cuenca", "municipio": "Tarancón",
+  "lugar": "Casa de Piedra",
+  "fecha": "EJEMPLO-rellenar", "hora_inicio": "18:00", "hora_fin": "20:00",
+  "precio": "Consultar",
+  "descripcion": "Talleres culturales rotativos, consultar programación vigente.",
+  "enlace_oficial": "", "requiere_coche": False
+ },
+ {
+  "id": "evt-007",
+  "titulo": "Sesión de natación / actividad piscina municipal",
+  "categoria": "deporte",
+  "perfil": ["adulto", "tercera_edad", "nino", "adolescente"],
+  "provincia": "Cuenca", "municipio": "Tarancón",
+  "lugar": "Piscina municipal climatizada",
+  "fecha": "EJEMPLO-temporada", "hora_inicio": "08:00", "hora_fin": "21:00",
+  "precio": "Consultar bono",
+  "descripcion": "Sesiones organizadas, activas entre febrero y junio según temporada.",
+  "enlace_oficial": "", "requiere_coche": False
+ },
+ {
+  "id": "evt-008",
+  "titulo": "Acompañamiento solidario a cita médica/teatro en Cuenca",
+  "categoria": "intergeneracional",
+  "perfil": ["tercera_edad"],
+  "provincia": "Cuenca", "municipio": "Cuenca",
+  "lugar": "Coordinación vía Cruz Roja Tarancón",
+  "fecha": "EJEMPLO-bajo-demanda", "hora_inicio": "10:00", "hora_fin": "13:00",
+  "precio": "Gratis",
+  "descripcion": "Conductores voluntarios acompañan a personas mayores a citas en Cuenca.",
+  "enlace_oficial": "", "requiere_coche": True
+ }
+]
+
+n = [8]
+def nid():
+    n[0]+=1
+    return f"evt-{n[0]:03d}"
+
+nuevos = []
+
+def add(**kw):
+    kw["id"] = nid()
+    kw.setdefault("enlace_oficial", "")
+    nuevos.append(kw)
+
+# ---------- CUENCA (ya tiene 8, añadimos 4 más: nino, adolescente, whatsapp, autobuses) ----------
+add(titulo="Cuentacuentos infantil de verano", categoria="cultura",
+    perfil=["nino"], provincia="Cuenca", municipio="Tarancón",
+    lugar="Biblioteca Municipal Luis Rius", fecha="EJEMPLO-cada-jueves",
+    hora_inicio="18:00", hora_fin="19:00", precio="Gratis",
+    descripcion="Sesión de cuentacuentos para peques con animación a la lectura.",
+    requiere_coche=False)
+
+add(titulo="Torneo de fútbol sala juvenil", categoria="deporte",
+    perfil=["adolescente"], provincia="Cuenca", municipio="Tarancón",
+    lugar="Pabellón Polideportivo Municipal", fecha="EJEMPLO-mensual",
+    hora_inicio="17:00", hora_fin="20:00", precio="Inscripción 5€/equipo",
+    descripcion="Liguilla de fútbol sala para adolescentes, equipos de 5.",
+    requiere_coche=False)
+
+add(titulo="Grupo de WhatsApp: avisos de Tarancón", categoria="whatsapp",
+    perfil=["adulto", "tercera_edad", "adolescente"], provincia="Cuenca", municipio="Tarancón",
+    lugar="Canal/grupo online", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Gratis",
+    descripcion="Avisos de eventos, chollos y novedades del pueblo directos al móvil.",
+    enlace_oficial="https://chat.whatsapp.com/EJEMPLO-taranco-avisos", requiere_coche=False)
+
+add(titulo="Horarios de autobús Tarancón - Cuenca capital", categoria="autobuses",
+    perfil=["nino", "adolescente", "adulto", "tercera_edad"], provincia="Cuenca", municipio="Tarancón",
+    lugar="Estación de autobuses de Tarancón", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Consultar tarifa",
+    descripcion="Línea regular Tarancón-Cuenca capital. Revisa horarios actualizados antes de viajar.",
+    enlace_oficial="", requiere_coche=False)
+
+# ---------- ALBACETE ----------
+add(titulo="EJEMPLO: Ruta cultural por el casco histórico", categoria="cultura",
+    perfil=["adulto", "tercera_edad"], provincia="Albacete", municipio="Albacete",
+    lugar="Casco histórico (por confirmar)", fecha="EJEMPLO-rellenar",
+    hora_inicio="11:00", hora_fin="13:00", precio="Por confirmar",
+    descripcion="Plan de ejemplo — sustituir por actividad real de Albacete capital o comarca.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Parque infantil y zona de juegos", categoria="cultura",
+    perfil=["nino"], provincia="Albacete", municipio="Albacete",
+    lugar="Parque Abelardo Sánchez (por confirmar)", fecha="EJEMPLO-permanente",
+    hora_inicio="10:00", hora_fin="21:00", precio="Gratis",
+    descripcion="Plan de ejemplo — zona infantil al aire libre, confirmar ubicación y estado.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Pista de skate y zona joven", categoria="deporte",
+    perfil=["adolescente"], provincia="Albacete", municipio="Hellín",
+    lugar="Skatepark municipal (por confirmar)", fecha="EJEMPLO-permanente",
+    hora_inicio="16:00", hora_fin="21:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sustituir por instalación real de skate o zona joven.",
+    requiere_coche=True)
+
+add(titulo="EJEMPLO: Tardes de bingo y café para mayores", categoria="intergeneracional",
+    perfil=["tercera_edad"], provincia="Albacete", municipio="Villarrobledo",
+    lugar="Centro de Mayores (por confirmar)", fecha="EJEMPLO-semanal",
+    hora_inicio="17:00", hora_fin="19:00", precio="Gratis",
+    descripcion="Plan de ejemplo — actividad social en centro de mayores, confirmar horario real.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Mercadillo semanal de Almansa", categoria="comercio_local",
+    perfil=["adulto", "tercera_edad"], provincia="Albacete", municipio="Almansa",
+    lugar="Recinto ferial (por confirmar)", fecha="EJEMPLO-cada-sábado",
+    hora_inicio="09:00", hora_fin="14:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sustituir por mercadillo real de Almansa.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Cine de verano al aire libre", categoria="cultura",
+    perfil=["nino", "adolescente", "adulto"], provincia="Albacete", municipio="Caudete",
+    lugar="Plaza Mayor (por confirmar)", fecha="EJEMPLO-temporada-verano",
+    hora_inicio="22:00", hora_fin="00:00", precio="Gratis",
+    descripcion="Plan de ejemplo — proyecciones de verano en plaza, confirmar programación.",
+    requiere_coche=True)
+
+add(titulo="Grupo de WhatsApp: avisos de Albacete capital", categoria="whatsapp",
+    perfil=["adulto", "tercera_edad", "adolescente"], provincia="Albacete", municipio="Albacete",
+    lugar="Canal/grupo online", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Gratis",
+    descripcion="Avisos de eventos, chollos y novedades de la capital directos al móvil.",
+    enlace_oficial="https://chat.whatsapp.com/EJEMPLO-albacete-avisos", requiere_coche=False)
+
+add(titulo="Horarios de autobús Albacete - Hellín", categoria="autobuses",
+    perfil=["nino", "adolescente", "adulto", "tercera_edad"], provincia="Albacete", municipio="Albacete",
+    lugar="Estación de autobuses de Albacete", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Consultar tarifa",
+    descripcion="Línea regular Albacete-Hellín. Revisa horarios actualizados antes de viajar.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Liga local de pádel", categoria="deporte",
+    perfil=["adulto"], provincia="Albacete", municipio="Villarrobledo",
+    lugar="Club de pádel municipal (por confirmar)", fecha="EJEMPLO-temporada",
+    hora_inicio="19:00", hora_fin="22:00", precio="Inscripción por confirmar",
+    descripcion="Plan de ejemplo — liga amateur de pádel, confirmar fechas e inscripción.",
+    requiere_coche=True)
+
+# ---------- CIUDAD REAL ----------
+add(titulo="EJEMPLO: Chollo gastronómico local", categoria="chollo",
+    perfil=["adulto"], provincia="Ciudad Real", municipio="Ciudad Real",
+    lugar="Por confirmar", fecha="EJEMPLO-rellenar",
+    hora_inicio="20:00", hora_fin="23:00", precio="Por confirmar",
+    descripcion="Plan de ejemplo — sustituir por un chollo real de Ciudad Real capital o comarca.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Taller infantil de cerámica", categoria="cultura",
+    perfil=["nino"], provincia="Ciudad Real", municipio="Ciudad Real",
+    lugar="Museo (por confirmar)", fecha="EJEMPLO-mensual",
+    hora_inicio="11:00", hora_fin="13:00", precio="Consultar",
+    descripcion="Plan de ejemplo — taller familiar en museo local, confirmar programa.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Encuentro joven de videojuegos", categoria="cultura",
+    perfil=["adolescente"], provincia="Ciudad Real", municipio="Puertollano",
+    lugar="Centro Joven (por confirmar)", fecha="EJEMPLO-mensual",
+    hora_inicio="17:00", hora_fin="20:00", precio="Gratis",
+    descripcion="Plan de ejemplo — torneo de videojuegos y quedada joven, confirmar fecha.",
+    requiere_coche=True)
+
+add(titulo="EJEMPLO: Paseos guiados para mayores", categoria="intergeneracional",
+    perfil=["tercera_edad"], provincia="Ciudad Real", municipio="Valdepeñas",
+    lugar="Parque municipal (por confirmar)", fecha="EJEMPLO-semanal",
+    hora_inicio="10:00", hora_fin="11:30", precio="Gratis",
+    descripcion="Plan de ejemplo — ruta de paseo suave acompañado, confirmar punto de encuentro.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Mercadillo de Tomelloso", categoria="comercio_local",
+    perfil=["adulto", "tercera_edad"], provincia="Ciudad Real", municipio="Tomelloso",
+    lugar="Recinto ferial (por confirmar)", fecha="EJEMPLO-cada-domingo",
+    hora_inicio="09:00", hora_fin="14:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sustituir por mercadillo real de Tomelloso.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Piscina municipal de verano", categoria="deporte",
+    perfil=["nino", "adolescente", "adulto"], provincia="Ciudad Real", municipio="Alcázar de San Juan",
+    lugar="Piscina municipal (por confirmar)", fecha="EJEMPLO-temporada-verano",
+    hora_inicio="11:00", hora_fin="20:00", precio="Consultar bono",
+    descripcion="Plan de ejemplo — piscina de verano, confirmar tarifas y horario.",
+    requiere_coche=True)
+
+add(titulo="Grupo de WhatsApp: avisos de Ciudad Real capital", categoria="whatsapp",
+    perfil=["adulto", "tercera_edad", "adolescente"], provincia="Ciudad Real", municipio="Ciudad Real",
+    lugar="Canal/grupo online", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Gratis",
+    descripcion="Avisos de eventos, chollos y novedades de la capital directos al móvil.",
+    enlace_oficial="https://chat.whatsapp.com/EJEMPLO-ciudadreal-avisos", requiere_coche=False)
+
+add(titulo="Horarios de autobús Ciudad Real - Puertollano", categoria="autobuses",
+    perfil=["nino", "adolescente", "adulto", "tercera_edad"], provincia="Ciudad Real", municipio="Ciudad Real",
+    lugar="Estación de autobuses de Ciudad Real", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Consultar tarifa",
+    descripcion="Línea regular Ciudad Real-Puertollano. Revisa horarios actualizados antes de viajar.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Chollo de cine en VO", categoria="chollo",
+    perfil=["adulto", "adolescente"], provincia="Ciudad Real", municipio="Manzanares",
+    lugar="Cine local (por confirmar)", fecha="EJEMPLO-cada-miércoles",
+    hora_inicio="20:00", hora_fin="22:30", precio="Día del espectador",
+    descripcion="Plan de ejemplo — sesión de cine a precio reducido, confirmar día vigente.",
+    requiere_coche=True)
+
+add(titulo="EJEMPLO: Taller de robótica para peques", categoria="cultura",
+    perfil=["nino"], provincia="Ciudad Real", municipio="Puertollano",
+    lugar="Centro cultural (por confirmar)", fecha="EJEMPLO-mensual",
+    hora_inicio="17:00", hora_fin="18:30", precio="Consultar",
+    descripcion="Plan de ejemplo — taller STEM para niños, confirmar próxima edición.",
+    requiere_coche=True)
+
+# ---------- GUADALAJARA ----------
+add(titulo="EJEMPLO: Actividad cultural municipal", categoria="cultura",
+    perfil=["adulto", "tercera_edad"], provincia="Guadalajara", municipio="Guadalajara",
+    lugar="Por confirmar", fecha="EJEMPLO-rellenar",
+    hora_inicio="18:00", hora_fin="20:00", precio="Por confirmar",
+    descripcion="Plan de ejemplo — sustituir por actividad real de Guadalajara capital o comarca.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Taller infantil de manualidades", categoria="cultura",
+    perfil=["nino"], provincia="Guadalajara", municipio="Azuqueca de Henares",
+    lugar="Centro cultural (por confirmar)", fecha="EJEMPLO-semanal",
+    hora_inicio="17:30", hora_fin="19:00", precio="Consultar",
+    descripcion="Plan de ejemplo — taller creativo para peques, confirmar programación.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Torneo juvenil de baloncesto 3x3", categoria="deporte",
+    perfil=["adolescente"], provincia="Guadalajara", municipio="Guadalajara",
+    lugar="Polideportivo municipal (por confirmar)", fecha="EJEMPLO-mensual",
+    hora_inicio="17:00", hora_fin="20:00", precio="Inscripción por confirmar",
+    descripcion="Plan de ejemplo — torneo de calle 3x3, confirmar fecha e inscripción.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Club de lectura para mayores", categoria="intergeneracional",
+    perfil=["tercera_edad"], provincia="Guadalajara", municipio="Sigüenza",
+    lugar="Biblioteca municipal (por confirmar)", fecha="EJEMPLO-quincenal",
+    hora_inicio="17:00", hora_fin="18:30", precio="Gratis",
+    descripcion="Plan de ejemplo — tertulia literaria, confirmar próxima sesión.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Mercadillo de Azuqueca de Henares", categoria="comercio_local",
+    perfil=["adulto", "tercera_edad"], provincia="Guadalajara", municipio="Azuqueca de Henares",
+    lugar="Recinto ferial (por confirmar)", fecha="EJEMPLO-cada-viernes",
+    hora_inicio="09:00", hora_fin="14:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sustituir por mercadillo real de Azuqueca.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Chollo de menú de mediodía", categoria="chollo",
+    perfil=["adulto"], provincia="Guadalajara", municipio="Guadalajara",
+    lugar="Por confirmar", fecha="EJEMPLO-permanente",
+    hora_inicio="13:30", hora_fin="16:00", precio="Por confirmar",
+    descripcion="Plan de ejemplo — sustituir por chollo real de hostelería local.",
+    requiere_coche=False)
+
+add(titulo="Grupo de WhatsApp: avisos de Guadalajara capital", categoria="whatsapp",
+    perfil=["adulto", "tercera_edad", "adolescente"], provincia="Guadalajara", municipio="Guadalajara",
+    lugar="Canal/grupo online", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Gratis",
+    descripcion="Avisos de eventos, chollos y novedades de la capital directos al móvil.",
+    enlace_oficial="https://chat.whatsapp.com/EJEMPLO-guadalajara-avisos", requiere_coche=False)
+
+add(titulo="Horarios de autobús Guadalajara - Sigüenza", categoria="autobuses",
+    perfil=["nino", "adolescente", "adulto", "tercera_edad"], provincia="Guadalajara", municipio="Guadalajara",
+    lugar="Estación de autobuses de Guadalajara", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Consultar tarifa",
+    descripcion="Línea regular Guadalajara-Sigüenza. Revisa horarios actualizados antes de viajar.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Ruta familiar en bici", categoria="deporte",
+    perfil=["nino", "adulto"], provincia="Guadalajara", municipio="Molina de Aragón",
+    lugar="Vía verde (por confirmar)", fecha="EJEMPLO-fin-de-semana",
+    hora_inicio="10:00", hora_fin="13:00", precio="Gratis",
+    descripcion="Plan de ejemplo — ruta familiar en bicicleta, confirmar punto de salida.",
+    requiere_coche=True)
+
+add(titulo="EJEMPLO: Concierto joven en la plaza", categoria="cultura",
+    perfil=["adolescente"], provincia="Guadalajara", municipio="Cifuentes",
+    lugar="Plaza Mayor (por confirmar)", fecha="EJEMPLO-fin-de-semana",
+    hora_inicio="21:00", hora_fin="23:00", precio="Gratis",
+    descripcion="Plan de ejemplo — concierto al aire libre con grupos locales, confirmar fecha.",
+    requiere_coche=True)
+
+# ---------- TOLEDO ----------
+add(titulo="EJEMPLO: Mercadillo o feria local", categoria="comercio_local",
+    perfil=["adulto", "tercera_edad"], provincia="Toledo", municipio="Toledo",
+    lugar="Por confirmar", fecha="EJEMPLO-rellenar",
+    hora_inicio="09:00", hora_fin="14:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sustituir por mercadillo o feria real de Toledo capital o comarca.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Visita teatralizada para niños", categoria="cultura",
+    perfil=["nino"], provincia="Toledo", municipio="Toledo",
+    lugar="Casco histórico (por confirmar)", fecha="EJEMPLO-fin-de-semana",
+    hora_inicio="11:00", hora_fin="12:30", precio="Consultar",
+    descripcion="Plan de ejemplo — ruta teatralizada apta para familias, confirmar reserva.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Skatepark y zona joven", categoria="deporte",
+    perfil=["adolescente"], provincia="Toledo", municipio="Talavera de la Reina",
+    lugar="Skatepark municipal (por confirmar)", fecha="EJEMPLO-permanente",
+    hora_inicio="16:00", hora_fin="21:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sustituir por instalación real de skate o zona joven.",
+    requiere_coche=True)
+
+add(titulo="EJEMPLO: Gimnasia de mantenimiento para mayores", categoria="intergeneracional",
+    perfil=["tercera_edad"], provincia="Toledo", municipio="Illescas",
+    lugar="Centro de mayores (por confirmar)", fecha="EJEMPLO-semanal",
+    hora_inicio="10:00", hora_fin="11:00", precio="Gratis",
+    descripcion="Plan de ejemplo — sesiones de gimnasia suave, confirmar horario real.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Chollo de tapeo en el casco histórico", categoria="chollo",
+    perfil=["adulto"], provincia="Toledo", municipio="Toledo",
+    lugar="Por confirmar", fecha="EJEMPLO-permanente",
+    hora_inicio="20:00", hora_fin="23:30", precio="Por confirmar",
+    descripcion="Plan de ejemplo — sustituir por chollo real de tapeo en Toledo.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Cine de verano en Talavera", categoria="cultura",
+    perfil=["nino", "adolescente", "adulto"], provincia="Toledo", municipio="Talavera de la Reina",
+    lugar="Plaza del Pan (por confirmar)", fecha="EJEMPLO-temporada-verano",
+    hora_inicio="22:00", hora_fin="00:00", precio="Gratis",
+    descripcion="Plan de ejemplo — proyecciones de verano, confirmar programación.",
+    requiere_coche=True)
+
+add(titulo="Grupo de WhatsApp: avisos de Toledo capital", categoria="whatsapp",
+    perfil=["adulto", "tercera_edad", "adolescente"], provincia="Toledo", municipio="Toledo",
+    lugar="Canal/grupo online", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Gratis",
+    descripcion="Avisos de eventos, chollos y novedades de la capital directos al móvil.",
+    enlace_oficial="https://chat.whatsapp.com/EJEMPLO-toledo-avisos", requiere_coche=False)
+
+add(titulo="Horarios de autobús Toledo - Talavera de la Reina", categoria="autobuses",
+    perfil=["nino", "adolescente", "adulto", "tercera_edad"], provincia="Toledo", municipio="Toledo",
+    lugar="Estación de autobuses de Toledo", fecha="EJEMPLO-permanente",
+    hora_inicio="", hora_fin="", precio="Consultar tarifa",
+    descripcion="Línea regular Toledo-Talavera de la Reina. Revisa horarios actualizados antes de viajar.",
+    requiere_coche=False)
+
+add(titulo="EJEMPLO: Liga local de pádel", categoria="deporte",
+    perfil=["adulto"], provincia="Toledo", municipio="Illescas",
+    lugar="Club de pádel (por confirmar)", fecha="EJEMPLO-temporada",
+    hora_inicio="19:00", hora_fin="22:00", precio="Inscripción por confirmar",
+    descripcion="Plan de ejemplo — liga amateur de pádel, confirmar fechas e inscripción.",
+    requiere_coche=True)
+
+add(titulo="EJEMPLO: Tardes de juegos de mesa para mayores", categoria="intergeneracional",
+    perfil=["tercera_edad"], provincia="Toledo", municipio="Consuegra",
+    lugar="Centro de mayores (por confirmar)", fecha="EJEMPLO-semanal",
+    hora_inicio="17:00", hora_fin="19:00", precio="Gratis",
+    descripcion="Plan de ejemplo — tardes de cartas y juegos de mesa, confirmar horario real.",
+    requiere_coche=False)
+
+todos_eventos = existentes + nuevos
+
+data = {
+  "_nota_para_ti": "Las fechas marcadas con 'EJEMPLO' son ficticias para probar la app. Sustitúyelas por fechas reales antes de publicar. Los lugares y comercios marcados como '(por confirmar)' son de relleno: verifica nombre, horario y precio reales antes de publicar. Los eventos de Albacete, Ciudad Real, Guadalajara y Toledo siguen siendo en su mayoría ejemplos de relleno (salvo los de Cuenca): sustitúyelos por planes reales cuando amplíes esas zonas. Los grupos de WhatsApp y horarios de autobús son plantillas — sustituye los enlaces 'EJEMPLO-...' por los reales de cada pueblo/línea.",
+  "ultima_actualizacion": "2026-06-21",
+  "eventos": todos_eventos
 }
+
+with open("agenda.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+print("total eventos:", len(todos_eventos))
+from collections import Counter
+print("por provincia:", Counter(e["provincia"] for e in todos_eventos))
+print("por categoria:", Counter(e["categoria"] for e in todos_eventos))
+perfiles = Counter()
+for e in todos_eventos:
+    for p in e["perfil"]:
+        perfiles[p]+=1
+print("por perfil:", perfiles)
