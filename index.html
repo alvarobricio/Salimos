@@ -63,6 +63,9 @@
     overflow: hidden;
     height: 280px;
   }
+  @media (min-width: 1024px) {
+    #destacado { height: 360px; }
+  }
   #destacado-track {
     display: flex;
     height: 100%;
@@ -113,7 +116,7 @@
 
 <!-- ============ HEADER ============ -->
 <header class="px-5 pt-6 pb-4 border-b-2 border-ink/10">
-  <div class="flex items-center gap-3 max-w-2xl mx-auto">
+  <div class="flex items-center gap-3 max-w-2xl lg:max-w-6xl mx-auto">
     <svg class="windmill w-9 h-9 shrink-0" viewBox="0 0 64 64" fill="none">
       <line x1="32" y1="20" x2="32" y2="56" stroke="#2A2420" stroke-width="2.5"/>
       <g stroke="#C1502E" stroke-width="3" stroke-linecap="round">
@@ -133,11 +136,11 @@
 <div class="horizon"></div>
 
 <!-- ============ ONBOARDING ============ -->
-<section id="onboarding" class="max-w-2xl mx-auto px-5 py-10">
+<section id="onboarding" class="max-w-2xl lg:max-w-6xl mx-auto px-5 py-10">
   <h2 class="display text-3xl sm:text-4xl font-semibold mb-2">¿Quién va a salir?</h2>
   <p class="text-ink/70 mb-8 max-w-md">Elige tu perfil para ver solo los planes que te interesan. Puedes cambiarlo cuando quieras.</p>
 
-  <div class="grid gap-3 mb-8" role="radiogroup" aria-label="Selecciona tu perfil">
+  <div class="grid gap-3 mb-8 lg:grid-cols-2 lg:gap-4 lg:max-w-3xl" role="radiogroup" aria-label="Selecciona tu perfil">
     <button data-perfil="nino" class="perfil-btn focus-ring text-left border-2 border-ink/15 rounded-2xl p-5 bg-white hover:border-terracota transition" role="radio" aria-checked="false">
       <span class="block text-lg font-semibold display">Niño (0-12 años)</span>
       <span class="block text-sm text-ink/60">Planes en familia, talleres y actividades infantiles</span>
@@ -167,61 +170,70 @@
 </section>
 
 <!-- ============ AGENDA ============ -->
-<section id="agenda" class="hidden max-w-2xl mx-auto px-5 py-8 pb-24">
+<section id="agenda" class="hidden max-w-2xl lg:max-w-6xl mx-auto px-5 py-8 pb-24">
 
   <div class="flex items-center justify-between mb-5">
     <h2 class="display text-2xl font-semibold">Salimos</h2>
     <button id="cambiar-perfil" class="focus-ring text-sm underline text-ink/60 hover:text-ink">cambiar perfil</button>
   </div>
 
-  <!-- ============ CARRUSEL DESTACADOS ============ -->
-  <div id="destacado-wrap" class="hidden mb-6">
-    <div id="destacado">
-      <div id="destacado-track"></div>
-      <button id="destacado-prev" class="destacado-arrow focus-ring" aria-label="Anterior">‹</button>
-      <button id="destacado-next" class="destacado-arrow focus-ring" aria-label="Siguiente">›</button>
-      <div id="destacado-dots" class="destacado-dots" role="tablist" aria-label="Planes destacados"></div>
+  <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-10 lg:items-start">
+
+    <!-- ===== sidebar de filtros (desktop) ===== -->
+    <aside class="lg:sticky lg:top-6">
+      <!-- buscador por localidad / texto -->
+      <div class="relative mb-4">
+        <input id="buscador" type="text" inputmode="search"
+          placeholder="Busca por pueblo, lugar o plan (ej. Tarancón, piscina...)"
+          class="focus-ring w-full border-2 border-ink/15 rounded-full py-3 pl-11 pr-4 bg-white text-sm placeholder:text-ink/40">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-ink/40">🔍</span>
+      </div>
+
+      <!-- selector de provincia -->
+      <div class="mb-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-ink/50 mb-2">Provincia</p>
+        <div id="filtros-provincia" class="flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap lg:gap-1.5"></div>
+      </div>
+
+      <!-- filtros de categoría -->
+      <div class="mb-6 lg:mb-0">
+        <p class="text-xs font-semibold uppercase tracking-wide text-ink/50 mb-2">Categoría</p>
+        <div id="filtros-categoria" class="flex flex-wrap gap-2"></div>
+      </div>
+    </aside>
+
+    <!-- ===== contenido principal ===== -->
+    <div>
+      <!-- ============ CARRUSEL DESTACADOS ============ -->
+      <div id="destacado-wrap" class="hidden mb-6">
+        <div id="destacado">
+          <div id="destacado-track"></div>
+          <button id="destacado-prev" class="destacado-arrow focus-ring" aria-label="Anterior">‹</button>
+          <button id="destacado-next" class="destacado-arrow focus-ring" aria-label="Siguiente">›</button>
+          <div id="destacado-dots" class="destacado-dots" role="tablist" aria-label="Planes destacados"></div>
+        </div>
+      </div>
+
+      <div id="contenedor-lista"></div>
+
+      <p id="vacio" class="hidden text-ink/60 text-center py-12">
+        No hay planes para esta búsqueda todavía.<br>
+        <span class="text-sm">Prueba a quitar algún filtro, o propón tú el plan que falta.</span>
+      </p>
+
+      <!-- CTA proponer plan -->
+      <div class="mt-10 border-t-2 border-ink/10 pt-6 text-center">
+        <p class="text-sm text-ink/60 mb-3">¿Echas en falta un plan, chollo o sitio de tu pueblo?</p>
+        <button id="abrir-formulario" class="focus-ring px-6 py-3 rounded-full border-2 border-ink font-semibold hover:bg-ink hover:text-cream transition">
+          + Proponer un plan
+        </button>
+      </div>
     </div>
-  </div>
-
-  <!-- buscador por localidad / texto -->
-  <div class="relative mb-4">
-    <input id="buscador" type="text" inputmode="search"
-      placeholder="Busca por pueblo, lugar o plan (ej. Tarancón, piscina...)"
-      class="focus-ring w-full border-2 border-ink/15 rounded-full py-3 pl-11 pr-4 bg-white text-sm placeholder:text-ink/40">
-    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-ink/40">🔍</span>
-  </div>
-
-  <!-- selector de provincia -->
-  <div class="mb-3">
-    <p class="text-xs font-semibold uppercase tracking-wide text-ink/50 mb-2">Provincia</p>
-    <div id="filtros-provincia" class="flex flex-wrap gap-2"></div>
-  </div>
-
-  <!-- filtros de categoría -->
-  <div class="mb-6">
-    <p class="text-xs font-semibold uppercase tracking-wide text-ink/50 mb-2">Categoría</p>
-    <div id="filtros-categoria" class="flex flex-wrap gap-2"></div>
-  </div>
-
-  <div id="contenedor-lista"></div>
-
-  <p id="vacio" class="hidden text-ink/60 text-center py-12">
-    No hay planes para esta búsqueda todavía.<br>
-    <span class="text-sm">Prueba a quitar algún filtro, o propón tú el plan que falta.</span>
-  </p>
-
-  <!-- CTA proponer plan -->
-  <div class="mt-10 border-t-2 border-ink/10 pt-6 text-center">
-    <p class="text-sm text-ink/60 mb-3">¿Echas en falta un plan, chollo o sitio de tu pueblo?</p>
-    <button id="abrir-formulario" class="focus-ring px-6 py-3 rounded-full border-2 border-ink font-semibold hover:bg-ink hover:text-cream transition">
-      + Proponer un plan
-    </button>
   </div>
 </section>
 
 <!-- ============ FORMULARIO PROPONER PLAN ============ -->
-<section id="formulario" class="hidden max-w-2xl mx-auto px-5 py-8 pb-24">
+<section id="formulario" class="hidden max-w-2xl lg:max-w-3xl mx-auto px-5 py-8 pb-24">
   <button id="cerrar-formulario" class="focus-ring text-sm underline text-ink/60 hover:text-ink mb-4">← volver a la agenda</button>
   <h2 class="display text-2xl font-semibold mb-2">Proponer un plan</h2>
   <p class="text-ink/70 text-sm mb-6">Rellena lo que sepas. Al enviar se abrirá GitHub para crear el aviso — necesitas (o necesitarás crear) una cuenta gratuita de GitHub.</p>
@@ -367,22 +379,54 @@ function elegirPerfil(perfil, btn) {
   document.getElementById('continuar').disabled = false;
 }
 
+const PROVINCIA_ICONO = {
+  'Albacete': '🌾',
+  'Ciudad Real': '🍇',
+  'Cuenca': '🏞️',
+  'Guadalajara': '🌲',
+  'Toledo': '🏰'
+};
+
+function contarPorProvincia() {
+  const q = normalizar(textoBusqueda);
+  const conteos = {};
+  PROVINCIAS.forEach(p => conteos[p] = 0);
+  let total = 0;
+  agendaData.forEach(ev => {
+    const pasaPerfil = perfilActual === 'todos' || !ev.perfil || ev.perfil.includes(perfilActual);
+    const pasaCategoria = categoriaActiva === null || ev.categoria === categoriaActiva;
+    const pasaTexto = !q || [ev.titulo, ev.lugar, ev.municipio, ev.provincia, ev.descripcion]
+      .some(campo => normalizar(campo).includes(q));
+    if (pasaPerfil && pasaCategoria && pasaTexto) {
+      total++;
+      if (conteos[ev.provincia] !== undefined) conteos[ev.provincia]++;
+    }
+  });
+  return { conteos, total };
+}
+
 function renderFiltrosProvincia() {
   const cont = document.getElementById('filtros-provincia');
   cont.innerHTML = '';
+  const { conteos, total } = contarPorProvincia();
+
   const todas = document.createElement('button');
-  todas.textContent = 'Toda CLM';
-  todas.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
+  todas.className = `chip-provincia focus-ring w-full lg:w-auto flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition ${provinciaActiva === null ? 'bg-ink text-cream border-ink' : 'bg-white border-ink/15 hover:border-ink/40'}`;
+  todas.innerHTML = `<span class="flex items-center gap-2">🗺️ Toda CLM</span><span class="text-xs font-bold ${provinciaActiva === null ? 'text-cream/70' : 'text-ink/40'}">${total}</span>`;
   todas.setAttribute('aria-pressed', provinciaActiva === null);
   todas.onclick = () => { provinciaActiva = null; renderFiltrosProvincia(); renderLista(); };
   cont.appendChild(todas);
 
   PROVINCIAS.forEach(prov => {
+    const n = conteos[prov] || 0;
+    const activa = provinciaActiva === prov;
     const b = document.createElement('button');
-    b.textContent = prov;
-    b.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
-    b.setAttribute('aria-pressed', provinciaActiva === prov);
-    b.onclick = () => { provinciaActiva = prov; renderFiltrosProvincia(); renderLista(); };
+    b.disabled = n === 0 && !activa;
+    b.className = `chip-provincia focus-ring w-full lg:w-auto flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition
+      ${activa ? 'bg-terracota text-cream border-terracota' : n === 0 ? 'bg-white/50 border-ink/10 text-ink/35 cursor-not-allowed' : 'bg-white border-ink/15 hover:border-terracota'}`;
+    b.innerHTML = `<span class="flex items-center gap-2">${PROVINCIA_ICONO[prov] || '📍'} ${prov}</span><span class="text-xs font-bold ${activa ? 'text-cream/80' : 'text-ink/40'}">${n}</span>`;
+    b.setAttribute('aria-pressed', activa);
+    b.onclick = () => { if (b.disabled) return; provinciaActiva = prov; renderFiltrosProvincia(); renderLista(); };
     cont.appendChild(b);
   });
 }
@@ -394,7 +438,7 @@ function renderFiltrosCategoria() {
   todas.textContent = 'Todo';
   todas.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
   todas.setAttribute('aria-pressed', categoriaActiva === null);
-  todas.onclick = () => { categoriaActiva = null; renderFiltrosCategoria(); renderLista(); };
+  todas.onclick = () => { categoriaActiva = null; renderFiltrosCategoria(); renderFiltrosProvincia(); renderLista(); };
   cont.appendChild(todas);
 
   Object.entries(CATEGORIAS).forEach(([key, val]) => {
@@ -402,7 +446,7 @@ function renderFiltrosCategoria() {
     b.textContent = val.label;
     b.className = 'chip focus-ring px-4 py-1.5 rounded-full border-2 border-ink/15 text-sm font-medium bg-white';
     b.setAttribute('aria-pressed', categoriaActiva === key);
-    b.onclick = () => { categoriaActiva = key; renderFiltrosCategoria(); renderLista(); };
+    b.onclick = () => { categoriaActiva = key; renderFiltrosCategoria(); renderFiltrosProvincia(); renderLista(); };
     cont.appendChild(b);
   });
 }
@@ -489,7 +533,7 @@ function renderLista() {
     titulo.textContent = nombreGrupo;
     bloque.appendChild(titulo);
     const lista = document.createElement('div');
-    lista.className = 'space-y-4';
+    lista.className = 'space-y-4 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start';
     grupos[nombreGrupo].forEach(ev => lista.appendChild(tarjetaEvento(ev)));
     bloque.appendChild(lista);
     cont.appendChild(bloque);
@@ -638,6 +682,7 @@ document.getElementById('cambiar-perfil').addEventListener('click', () => {
 
 document.getElementById('buscador').addEventListener('input', (e) => {
   textoBusqueda = e.target.value;
+  renderFiltrosProvincia();
   renderLista();
 });
 
