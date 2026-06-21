@@ -55,6 +55,58 @@
     font-family: 'Fraunces', serif;
     font-weight: 600;
   }
+
+  /* ===== Carrusel destacado ===== */
+  #destacado {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    height: 280px;
+  }
+  #destacado-track {
+    display: flex;
+    height: 100%;
+    transition: transform .5s cubic-bezier(.65,0,.35,1);
+    touch-action: pan-y;
+  }
+  .destacado-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    color: #F7F2E7;
+  }
+  .destacado-slide::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.75) 90%);
+  }
+  .destacado-slide > * { position: relative; z-index: 1; }
+  .destacado-dots {
+    position: absolute; bottom: .75rem; right: 1rem; z-index: 2;
+    display: flex; gap: 6px;
+  }
+  .destacado-dot {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: rgba(247,242,231,.45);
+    transition: all .25s ease;
+  }
+  .destacado-dot[aria-current="true"] {
+    background: #F7F2E7;
+    width: 18px;
+  }
+  .destacado-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 2; width: 34px; height: 34px; border-radius: 999px;
+    background: rgba(42,36,32,.35); color: #F7F2E7;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(2px);
+  }
+  .destacado-arrow:hover { background: rgba(42,36,32,.6); }
+  #destacado-prev { left: .6rem; }
+  #destacado-next { right: .6rem; }
 </style>
 </head>
 <body class="min-h-screen">
@@ -120,6 +172,16 @@
   <div class="flex items-center justify-between mb-5">
     <h2 class="display text-2xl font-semibold">Salimos</h2>
     <button id="cambiar-perfil" class="focus-ring text-sm underline text-ink/60 hover:text-ink">cambiar perfil</button>
+  </div>
+
+  <!-- ============ CARRUSEL DESTACADOS ============ -->
+  <div id="destacado-wrap" class="hidden mb-6">
+    <div id="destacado">
+      <div id="destacado-track"></div>
+      <button id="destacado-prev" class="destacado-arrow focus-ring" aria-label="Anterior">‹</button>
+      <button id="destacado-next" class="destacado-arrow focus-ring" aria-label="Siguiente">›</button>
+      <div id="destacado-dots" class="destacado-dots" role="tablist" aria-label="Planes destacados"></div>
+    </div>
   </div>
 
   <!-- buscador por localidad / texto -->
@@ -434,6 +496,125 @@ function renderLista() {
   });
 }
 
+let destacadoIndex = 0;
+let destacadoItems = [];
+let destacadoTimer = null;
+
+const DESTACADO_BG = {
+  cultura: 'linear-gradient(135deg,#2B3A55,#1c2740)',
+  chollo: 'linear-gradient(135deg,#6B7A3E,#4d5a2b)',
+  comercio_local: 'linear-gradient(135deg,#8C9A57,#6B7A3E)',
+  deporte: 'linear-gradient(135deg,#C1502E,#9C3D21)',
+  intergeneracional: 'linear-gradient(135deg,#2A2420,#46392f)'
+};
+
+function elegirDestacados(items) {
+  // prioriza Hoy/Mañana, si no hay suficientes rellena con el resto
+  const prioridad = items.filter(ev => ['Hoy', 'Mañana'].includes(grupoTemporal(ev.fecha)));
+  const resto = items.filter(ev => !prioridad.includes(ev));
+  return [...prioridad, ...resto].slice(0, 6);
+}
+
+function renderDestacados() {
+  const wrap = document.getElementById('destacado-wrap');
+  const track = document.getElementById('destacado-track');
+  const dots = document.getElementById('destacado-dots');
+  clearInterval(destacadoTimer);
+
+  const baseItems = agendaData.filter(ev => perfilActual === 'todos' || !ev.perfil || ev.perfil.includes(perfilActual));
+  destacadoItems = elegirDestacados(baseItems);
+
+  if (destacadoItems.length === 0) {
+    wrap.classList.add('hidden');
+    return;
+  }
+  wrap.classList.remove('hidden');
+
+  track.innerHTML = '';
+  dots.innerHTML = '';
+  destacadoIndex = 0;
+
+  destacadoItems.forEach((ev, i) => {
+    const cat = CATEGORIAS[ev.categoria] || { label: ev.categoria };
+    const slide = document.createElement('div');
+    slide.className = 'destacado-slide';
+    slide.style.background = DESTACADO_BG[ev.categoria] || 'linear-gradient(135deg,#2A2420,#46392f)';
+    slide.innerHTML = `
+      <div>
+        <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-white/20 mb-2">${cat.label} · ${formatearFecha(ev.fecha)}</span>
+        <h3 class="display text-2xl font-semibold leading-tight mb-1">${ev.titulo}</h3>
+        <p class="text-sm text-cream/85 mb-3 max-w-md line-clamp-2">${ev.descripcion || ''}</p>
+        <div class="flex gap-2">
+          <button class="destacado-detalle focus-ring px-5 py-2 rounded-full bg-cream text-ink text-sm font-semibold" data-id="${ev.id}">Ver detalles</button>
+          ${ev.enlace_oficial ? `<a href="${ev.enlace_oficial}" target="_blank" rel="noopener" class="focus-ring px-5 py-2 rounded-full border-2 border-cream/70 text-cream text-sm font-semibold">Más información</a>` : ''}
+        </div>
+      </div>`;
+    track.appendChild(slide);
+
+    const dot = document.createElement('button');
+    dot.className = 'destacado-dot focus-ring';
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-current', i === 0);
+    dot.setAttribute('aria-label', `Ir al destacado ${i + 1}`);
+    dot.onclick = () => irADestacado(i);
+    dots.appendChild(dot);
+  });
+
+  posicionarDestacado();
+  iniciarAutoplayDestacado();
+}
+
+function posicionarDestacado() {
+  const track = document.getElementById('destacado-track');
+  track.style.transform = `translateX(-${destacadoIndex * 100}%)`;
+  document.querySelectorAll('.destacado-dot').forEach((d, i) => {
+    d.setAttribute('aria-current', i === destacadoIndex);
+  });
+}
+
+function irADestacado(i) {
+  destacadoIndex = (i + destacadoItems.length) % destacadoItems.length;
+  posicionarDestacado();
+  iniciarAutoplayDestacado();
+}
+
+function iniciarAutoplayDestacado() {
+  clearInterval(destacadoTimer);
+  if (destacadoItems.length <= 1) return;
+  destacadoTimer = setInterval(() => irADestacado(destacadoIndex + 1), 5000);
+}
+
+document.getElementById('destacado-prev').addEventListener('click', () => irADestacado(destacadoIndex - 1));
+document.getElementById('destacado-next').addEventListener('click', () => irADestacado(destacadoIndex + 1));
+
+document.getElementById('destacado-track').addEventListener('click', (e) => {
+  const btn = e.target.closest('.destacado-detalle');
+  if (!btn) return;
+  const ev = destacadoItems.find(x => x.id === btn.dataset.id);
+  if (ev) {
+    textoBusqueda = ev.titulo;
+    document.getElementById('buscador').value = ev.titulo;
+    renderLista();
+    document.getElementById('contenedor-lista').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+
+// swipe táctil
+(() => {
+  let startX = 0, dx = 0, dragging = false;
+  const track = document.getElementById('destacado-track');
+  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; dragging = true; clearInterval(destacadoTimer); }, { passive: true });
+  track.addEventListener('touchmove', (e) => { if (!dragging) return; dx = e.touches[0].clientX - startX; }, { passive: true });
+  track.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    if (dx > 40) irADestacado(destacadoIndex - 1);
+    else if (dx < -40) irADestacado(destacadoIndex + 1);
+    else iniciarAutoplayDestacado();
+    dx = 0;
+  });
+})();
+
 document.querySelectorAll('.perfil-btn').forEach(btn => {
   btn.addEventListener('click', () => elegirPerfil(btn.dataset.perfil, btn));
 });
@@ -446,9 +627,11 @@ document.getElementById('continuar').addEventListener('click', async () => {
   renderFiltrosProvincia();
   renderFiltrosCategoria();
   renderLista();
+  renderDestacados();
 });
 
 document.getElementById('cambiar-perfil').addEventListener('click', () => {
+  clearInterval(destacadoTimer);
   document.getElementById('agenda').classList.add('hidden');
   document.getElementById('onboarding').classList.remove('hidden');
 });
