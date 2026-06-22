@@ -388,6 +388,7 @@ const REPO_GITHUB = 'alvarobricio/salimos';
 
 const PROVINCIAS = ['Albacete', 'Ciudad Real', 'Cuenca', 'Guadalajara', 'Toledo'];
 
+// Mapeado exacto con tus categorías reales del JSON
 const CATEGORIAS = {
   cultura: { label: 'Cultura', color: 'bg-noche text-cream' },
   chollo: { label: 'Chollo', color: 'bg-oliva text-cream' },
@@ -407,6 +408,7 @@ function normalizar(str) {
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
+// LECTURA DIRECTA DEL ARCHIVO agenda.json LOCAL
 async function cargarAgenda() {
   try {
     const res = await fetch('agenda.json');
@@ -570,7 +572,6 @@ function renderLista() {
   }
   vacio.classList.add('hidden');
 
-  // agrupar por cercanía temporal
   const grupos = {};
   items.forEach(ev => {
     const g = grupoTemporal(ev.fecha);
@@ -607,7 +608,6 @@ const DESTACADO_BG = {
 };
 
 function elegirDestacados(items) {
-  // prioriza Hoy/Mañana, si no hay suficientes rellena con el resto
   const prioridad = items.filter(ev => ['Hoy', 'Mañana'].includes(grupoTemporal(ev.fecha)));
   const resto = items.filter(ev => !prioridad.includes(ev));
   return [...prioridad, ...resto].slice(0, 6);
