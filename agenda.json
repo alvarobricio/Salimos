@@ -196,3 +196,40 @@
     }
   ]
 }
+{
+  "ultima_actualizacion": "22/06/2026",
+  "eventos": [
+    {
+      "id": "tarancon-teatro-001",
+      "titulo": "Teatro en el Auditorio de Tarancón",
+      "descripcion": "Una comedia brutal para todos los públicos. Risas aseguradas de la mano de la compañía local.",
+      "categoria": "cultura",
+      "fecha": "2026-06-25",
+      "hora_inicio": "20:30",
+      "hora_fin": "22:00",
+      "precio": "5€",
+      "lugar": "Auditorio Municipal",
+      "municipio": "Tarancón",
+      "provincia": "Cuenca",
+      "requiere_coche": false,
+      "perfil": ["adulto", "tercera_edad"],
+      "enlace_oficial": "https://www.tarancon.es"
+    },
+    {
+      "id": "cuenca-chollo-002",
+      "titulo": "Ruta de la Tapa y Caña a 2.50€",
+      "descripcion": "Los locales del centro se unen para ofrecer un chollo gastronómico de fin de semana.",
+      "categoria": "chollo",
+      "fecha": "2026-06-27",
+      "hora_inicio": "13:00",
+      "hora_fin": "16:00",
+      "precio": "2.50€",
+      "lugar": "Barrio del Castillo",
+      "municipio": "Cuenca",
+      "provincia": "Cuenca",
+      "requiere_coche": true,
+      "perfil": ["adulto", "adolescente"],
+      "enlace_oficial": ""
+    }
+  ]
+}
